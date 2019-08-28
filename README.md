@@ -1,5 +1,5 @@
 ********************************************************************
-                    R E A D M E    P R O Y E C T O    1                    
+#Proyecto 1: FFT_NASM_YoctoProject                   
 ********************************************************************
 Name: 	**Transformada rápida de Fourier con Yocto Project**
 Authors:
