@@ -3,7 +3,7 @@
 ********************************************************************
 Name: 	**Transformada rápida de Fourier con Yocto Project**
 Authors:
-   Frander Hernández <anhema15@gmail.com> 
+   Frander Hernández Matarrita <anhema15@gmail.com> 
    Bessy Urrea Mayorga  <bessy.lum7@gmail.com> 
    Cristhian González Vargas 	<cristhiandgv1996@gmail.com>   		 
    Bryan Salazar Hernández   <> 		 
