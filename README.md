@@ -1,11 +1,11 @@
 ********************************************************************
                     R E A D M E    P R O Y E C T O    1                    
 ********************************************************************
-Name: 	*Transformada rápida de Fourier con Yocto Project*
+Name: 	**Transformada rápida de Fourier con Yocto Project**
 Authors:
    Frander Hernández <anhema15@gmail.com> 
    Bessy Urrea Mayorga  <bessy.lum7@gmail.com> 
-   Cristhian González  	     <cristhiandgv1996@gmail.com>   		 
+   Cristhian González Vargas 	<cristhiandgv1996@gmail.com>   		 
    Bryan Salazar Hernández   <> 		 
 Instituto Tecnológico de Costa Rica
 II Semestre, 2019
