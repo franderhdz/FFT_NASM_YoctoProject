@@ -35,7 +35,7 @@ Pasos para crear un archivo **ejecutable** de emsamblador, con NASM.
 
 Una vez creado el <nombre_archivo>.asm se debe crear un **arhivo objeto** o archivo de codigo maquina, es decir, el archivo que tiene las instrucciones que entiende y maneja el procesador directamente.
 
-1. Para ensamblar, crear el **archivo objeto** (extension .o), se usa el comando: nasm -f elf64 -o <nombre_archivo>.o <nombre_archivo>.asm
+1. Para ensamblar, crear el **archivo objeto** (extension .o), se usa el comando: `nasm -f elf64 -o <nombre_archivo>.o` <nombre_archivo>.asm
 
 2. Comprobar que el archivo <nombre_archivo>.o se ha creado en el directorio con ls
 
