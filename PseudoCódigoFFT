@@ -1,0 +1,45 @@
+
+Sean las siguientes variables:
+
+N: cantidad inicial de datos (muestras) a los que se les va a aplicar FFT. 
+Indica la misma cantidad de entradas y salidas en cada etapa!!!
+
+PR: puntero de referencia variable, hace referencia al índice de la entrada y su respectivo valor
+
+REF: puntero de referencia que NUNCA ha de cambiar, es la referencia para el PR al inicio de cada bloque en etapa!
+
+OM: offset entre la parte superior e inferior de una mariposa dada. Sirve para dar un offset a la referencia PR.
+
+NM: número de mariposas en el bloque, 2^(etapa-1)
+M: contador que cuenta las mariposas calculadas en el bloque, hasta un máximo de NM-1 (porque M empieza en 0)
+
+NB: número de bloques de una etapa, N/2^etapa
+TB: tamaño de bloque, 2^etapa
+B: contador que sabe cuál es el bloque en el que se están calculando las mariposas
+
+
+*******************************************************Pseudo código FFT********************************************************
+
+Para E desde 1 hasta log_2(N)					#Para recorrer cada etapa
+
+   Para B desde 1 hasta NB					#Para recorrer cada bloque en cada etapa
+
+	para M desde 0 hasta NM-1				#Recorrer las mariposas que se tienen que calcular en un bloque 
+		call butterfly					#Guarda (reescribe datos) en [PR] y [PR+OM]
+		incrementar en 1 el índice al que apunta  PR	#Mueve la referencia y calcula la siguiente mariposa en el bloque
+		M=M+1						#PR y M no son lo mismo aunque parezca!!!!!!
+		
+	si PR+OM = TB y	B<NB		#Significa que está en la parte inferior de la última mariposa del bloque
+		salte al siguiente bloque, es decir, PR=REF+(2^etapa)(B)
+		B=B+1					#Incrementa el bloque
+	
+	si PR+OM = TB pero B=NB entonces		#Significa que se acabó la etapa, pase a la siguiente
+		calcule etapa actual
+		
+		******************el programa termina cuando E=log_2(N) y PR+OM=log_2(N)******************
+		si E=log_2(N) y además (no hace falta creo) PR+OM = TB y B=NB
+			SE ACABÓ EL CÁLCULO DE LA FFT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		de lo contrario, salte a la siguiente etapa, es decir, E=E+1	#Incrementa la etapa
+
+FIN!!!
+
