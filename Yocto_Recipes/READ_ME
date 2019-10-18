@@ -34,27 +34,30 @@ Una vez creada cada layer y configurada la carpeta build se realizan los siguien
 
 2. Una vez allí se escribe el comando: source oe-init-build-env
   -Esto inicializa el ambiente
+  
+3. Luego se ejecuta el comando: bitbake nasm
+  - Esto "habilita" el ensamblador nasm y puede ser utilizado como comando dentro de las recipes
 
-3. Seguidamente se realiza el comando: bitbake ensambladornasm
+4. Seguidamente se realiza el comando: bitbake ensambladornasm
   -Esto para cargar la receta que genera el archivo progra.o
 
-4. Como se menciono antes, el archivo progra.o se guardará en la dirección: ~/poky-warrior/build/tmp/work/i586-poky-linux/ensambladornasm/1.0-r0
+5. Como se menciono antes, el archivo progra.o se guardará en la dirección: ~/poky-warrior/build/tmp/work/i586-poky-linux/ensambladornasm/1.0-r0
    - Se debe de copiar este archivo y luego guardarlo en: ~/poky-warrior/meta-linker/recipes-gcclinker/gcclinker-1.0
 
-5. Luego se ejecuta el comando: bitbake gcclinker
+6. Luego se ejecuta el comando: bitbake gcclinker
   -Esto para cargar la receta que genera el archivo ejecutable llamado "progra"
   
-6. Por mayor seguridad se vuelve a inicializar el ambiente repitiendo el paso 2
+7. Por mayor seguridad se vuelve a inicializar el ambiente repitiendo el paso 2
 
-7. Se ejecuta el comando: bitbake core-image-sato
+8. Se ejecuta el comando: bitbake core-image-sato
   -Esto para correr la imagen en sato y se compile la receta y el programa
   
-8. Al terminar, se escribe el comando runqemu qemux86
+9. Al terminar, se escribe el comando runqemu qemux86
   -Para cargar la imagen customizada en Linux
 
-9. Dentro de la ventana del emulador se selecciona la opción "Terminal"
+10. Dentro de la ventana del emulador se selecciona la opción "Terminal"
 
-10. En dicha terminal se escribe el nombre del ejecutable creado (En este caso sería "progra")
+11. En dicha terminal se escribe el nombre del ejecutable creado (En este caso sería "progra")
   -Al precionar enter, se notará como se imprime en la línea de comandos la frase: "Hello, World!" lo cual es la función del archivo progra.asm programado.
   
   
