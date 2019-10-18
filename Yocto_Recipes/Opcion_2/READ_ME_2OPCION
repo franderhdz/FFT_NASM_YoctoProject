@@ -1,0 +1,53 @@
+A continuación se explicará el proceso para poder generar una imagen de Linux para cualquier aplicación .asm de 32 bits.
+Se dará, primeramente una descripción de cada una de las carpetas y archivos presentes en el folder "Yocto_Recipes".
+
+La carpeta "meta-nasld" es el layer que contiene la receta para ensamblar el programa .asm y, por lo tanto, genera el archivo objeto (.o) respectivo. También, enlaza el archivo .o y genera el ejecutable deseado
+
+Dentro de dicho layer se encuentra lo siguiente:
+  -El directorio "conf" presenta el archivo "layer.conf" el cual especifica la configuración de la layer en cuestión.
+  -El directorio "recipes-ejecutable" presenta otro directorio y un archivo:
+      +El directorio "ejecutable-1.0" presenta la programación .asm. En este caso, esta recibe el nombre de "programa.asm" la cual es una simple aplicación de "Hola, mundo!" con registros de 32 bits.
+      +El archivo "ensambladornasm.bb" es la receta en sí. En ella se indica que se desea ensamblar programa.asm y generar el archivo objeto programa.o, así como crear el ejecutable a partir de dicho archivo
+         *Esto se logra con el ensamblador nasm y el linker de GCC: LD
+
+El archivo "bblayers.conf" es donde se indican las layers que se toman en cuenta al generar la imagen en Linux
+
+El archivo "local.conf" es la configuración local. Nótese que al final del archivo se indican las recetas necesarias para crear la imagen en Linux
+
+NOTA: Los archivos "bblayers.conf" y "local.conf" deben de estar localizados en:  ~/poky-warrior/build/conf
+
+El archivo "programa.asm" es el programa en ensamblador de prueba. Es el mismo programa que se encuentra en la layer "meta-nasmld"
+
+
+Ahora se explicará el procedimiento para generar la imagen en Linux:
+Una vez creada cada layer y configurada la carpeta build se realizan los siguientes pasos:
+
+1. En la terminal debe de ubicarse en la carpeta "poky-warrior"
+
+2. Una vez allí se escribe el comando: source oe-init-build-env
+  -Esto inicializa el ambiente
+  
+3. Luego se ejecuta el comando: bitbake nasm
+  - Esto "habilita" el ensamblador nasm y puede ser utilizado como comando dentro de la recipe
+
+4. Seguidamente se realiza el comando: bitbake ejecutable
+   -Esto genera el código objeto: programa.o y lo "linkea" para generar el ejecutable: programa
+
+5. Por mayor seguridad se vuelve a inicializar el ambiente repitiendo el paso 2
+
+6. Se ejecuta el comando: bitbake core-image-sato
+  -Esto para correr la imagen en sato y se compile la receta y el programa
+
+7. Al terminar, se escribe el comando runqemu qemux86
+  -Para cargar la imagen customizada en Linux
+
+8. Dentro de la ventana del emulador se selecciona la opción "Terminal"
+
+9. En dicha terminal se escribe el nombre del ejecutable creado (En este caso sería "programa")
+  -Al precionar enter, se notará como se imprime en la línea de comandos la frase: "Hello, World!" lo cual es la función del archivo programa.asm programado.
+  
+  
+NOTA: Estas pruebas se realizaron con un archivo de programación .asm que utiliza registros de 32 bits. 
+      No es posible realizar todo el proceso descrito anteriormente con el archivo de programación de la FFT pues este utiliza registros de 64 bits
+      Se intentó de distintas formas poder utilizar un archivo .asm que utilizara registros de 64 bits pero no fue posible pues GCC solo puede enlazar archivos que utilicen registros de 64 bits
+
