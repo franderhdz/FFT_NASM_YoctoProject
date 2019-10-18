@@ -12,7 +12,7 @@ int main ()
   //variables declaration
   double PI = acos(-1);
   double W, W_imag, W_real;
-  int N = 512;
+  int N = 32;
   double p = (double) N;			//convert int N to double p
   double w_i[N/2];				//initialize imaginary array 
   double w_r[N/2];				//initialize real array
@@ -30,9 +30,14 @@ int main ()
 	w_r[i] = W_real;
   	printf ("exp(2*pi*n/N) of %d/%d is = %.6f%+.6fi\n", i, N, W_real, W_imag );
 	
-   	/* write 10 lines of text into the file stream*/
         //fprintf (fp, "This is line %f\n", W_imag);
-        fprintf (fp, "%f	%f\n", W_real, W_imag);
+        //fprintf (fp, "%f	%f\n", W_real, W_imag);
+	fprintf (fp, "%.4f\t", W_real);          //print horizontal lines of real parts
+  }
+  fprintf (fp, "\n");
+  fprintf (fp, "\n");
+  for (int i = 0; i < N/2; i++) {		//print horizontal lines of imaginary parts
+	fprintf (fp, "%.4f\t", w_i[i]);
         
   }	
   /* close the file*/  
