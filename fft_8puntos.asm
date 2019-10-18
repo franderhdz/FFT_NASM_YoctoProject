@@ -1,22 +1,23 @@
 %include "macros.asm"
 
 section .data
-	enR 	dd 5, -5, 2, -2, -2.1213, 2.1213, 4.9497, -4.9497
-	enI 	dd 0, 0, 0, 0, 0, 0, 0, 0
+	enR 	dd 5.0, -5.0, 2.0, -2.0, -2.1213, 2.1213, 4.9497, -4.9497
+	enI 	dd 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
 	N 		equ 8
 	nE      equ 3
 	zero 	equ 0
 	uno 	equ 1
 	dos 	equ 2
-	WR 		dd 1, 0.707107, 0, -0.707107
-	WI 		dd 0, -0.707107, -1, -0.707107
+	WR 		dd 1.0, 0.707107, 0.0, -0.707107
+	WI 		dd 0.0, -0.707107, -1.0, -0.707107
 	
 section .bss
-	indi_marip resb 8
+	indi_marip resb 4
 
 section .text
 
 global _start
+;global etapa1
 
 _start:
 	xor r12, r12	; hacer 0 el contador de etapas
@@ -48,19 +49,18 @@ fft_loop:
     pow r15			
     mov r9, rdi		; define offset que es 2^(cont inverso)
     push r9
-    xor rcx, rcx 	; contador para ubicacion de indice a tomar para los W
-    push rcx
+    xor r8, r8 	; contador para ubicacion de indice a tomar para los W
+    sub rsp, 16
     jmp definir_W
 
 
 definir_W:
-	mov r8, 1
-	imul r8, r14
-	imul r8, rbx 	; se multiplica M*B*2^(cont inverso) que es el offset
-	imul r8, r9
-	mov [indi_marip+rcx], r8 ; guarda en indi_marip el valor del indice a tomar de los W
-	pop rcx
-	inc rcx
+	mov rcx, 1
+	imul rcx, r14
+	imul rcx, rbx 	; se multiplica M*B*2^(cont inverso) que es el offset
+	imul rcx, r9
+	mov [indi_marip+r8], rcx ; guarda en indi_marip el valor del indice a tomar de los W
+	inc r8
 	jmp loop_etapa
 
 loop_etapa:
@@ -93,19 +93,23 @@ hacer_mariposa:
 	mov rdx, zero
 	cmp rbx, uno 	; si se esta en el bloque 1, aun no se necesita el offset de cada bloque
 	cmove rdi, rdx
+	mov r10, enR
+	mov r11, enI
+	add r10, rdi
+	add r11, rdi	
 	mov rdx, enR 	; para tener el dato de desfase de mariposa de la parte real
 	add rdx, r13
-	mov rdx, rdx
+	add rdx, rdi 	; suma el offset de bloque
 	mov rcx, enI 	; para tener el dato de desfase de mariposa de la parte imaginaria
 	add rcx, r13
-	mov rcx, rcx	
-	mov r8, r13 	; compara 2^(etapa-1)
-	add r8, rdi		; suma el offser de mariposa con el offset de bloque
+	add rcx, rdi 	; suma el offset de bloque
 	mov rax, r14 	; mueve M a rax para definir cual dato tomar de indi_marip
 	dec rax
+
 	mov rax, [indi_marip+rax] ; guarda el dato en rax
-	mariposa [enR+rdi], [enI+rdi], [rdx+r8], [rcx+r8], [WR+rax], [WI+rax]; nM es igual al offset entonces se usa para tal fin
+	mariposa [r10], [r11], [rdx], [rcx], [WR+rax], [WI+rax], r10, r11, rdx, rcx; nM es igual al offset entonces se usa para tal fin
 	cmp rbx, uno 	; si aun se esta en el bloque uno 
+etapa1:
 	je definir_W
 	jmp loop_etapa
 
