@@ -1,0 +1,8 @@
+Para lograr crear la imagen costumizada para una archivo .asm de 32 bits se generaron dos soluciones.
+En el presente directorio se pueden observar dos sub-directorios con los nombres: "Opcion1" y "Opcion2".
+
+La Opción 1 se refiere a una implementación que utiliza dos layers; una para generar el archivo objeto y otra para generar el ejecutable
+
+La Opción 2 utiliza solo una layer para realizar ambas funciones.
+
+Finalmente ambas generan el mismo resultado, aunque la opción 2 es más sencilla
