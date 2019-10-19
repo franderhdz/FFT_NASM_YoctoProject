@@ -34,16 +34,19 @@ REQUIREMENTS
 ********************************************************************
 HOW TO USE THE PROGRAM
 ============
+**Este código aún no es funcionable del todo**
 
-Pasos para crear un archivo **ejecutable** de emsamblador, con NASM.
+Pasos para crear un archivo **ejecutable** de emsamblador, con NASM. 
 
 Una vez creado el <nombre_archivo>.asm se debe crear un **arhivo objeto** o archivo de codigo maquina, es decir, el archivo que tiene las instrucciones que entiende y maneja el procesador directamente.
 
-1. Para ensamblar, crear el **archivo objeto** (extension .o), se usa el comando: `nasm -f elf64 -o <nombre_archivo>.o <nombre_archivo>.asm`
+1. Para ensamblar, crear el **archivo objeto** (extension .o), se usa el comando: 
+`nasm -f elf64 -o <nombre_archivo>.o <nombre_archivo>.asm`
 
 2. Comprobar que el archivo <nombre_archivo>.o se ha creado en el directorio con ls
 
-3. Para enlazar (linkear), crear el ejecutable a partir del archivo objeto, se utiliza el comando: `ld -o <nombre_ejecutable> <nombre_archivo>.o`
+3. Para enlazar (linkear), crear el ejecutable a partir del archivo objeto, se utiliza el comando: 
+`ld -o <nombre_ejecutable> <nombre_archivo>.o`
 
 4. Para abrir el arhivo ejecutable del programa se utiliza el comando: `./<nombre_ejecutable>`
 
