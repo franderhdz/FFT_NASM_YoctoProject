@@ -23,7 +23,7 @@ DESCRIPTION
 
 This is a student project that implement FFT algorithm using Netwide Assembler (NASM) and some tools of Yocto Project, in order to create a Linux image with an aplication that calculate Fast Fourier Transform.
 
-El algoritmo de FFT implementado en el archivo `fft.asm` se basa en el algoritmo **radix-2 FFT**, el cual se basa en descomponer las entradas muestreadas a transformar en una serie de entradas emparejadas por posición binaria revertida (bit reversal). A partir de estas N entradas (N puntos) se calculan operaciones de mariposa donde las rescpectivas entradas en cada una de las log_2(N) etapas se multiplican, suman y restan con los W's que caracterizan la transformación.
+El algoritmo de FFT implementado en el archivo `fft.asm` se basa en el algoritmo **radix-2 FFT**, el cual en este caso consiste en descomponer las entradas muestreadas a transformar en una serie de entradas emparejadas por posición binaria revertida (bit reversal) (diezmado en frecuencia). A partir de estas N entradas (N puntos) se calculan operaciones de mariposa donde las rescpectivas entradas en cada una de las log_2(N) etapas se multiplican, suman y restan con los W's que caracterizan la transformación.
 
 ********************************************************************
 REQUIREMENTS
