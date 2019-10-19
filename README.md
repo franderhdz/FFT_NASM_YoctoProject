@@ -27,6 +27,10 @@ This is a student project that implement FFT algorithm using Netwide Assembler (
 REQUIREMENTS
 ============
 
+1. NASM x86
+2. Yocto Project
+3. gcc compiler
+
 ********************************************************************
 HOW TO USE THE PROGRAM
 ============
@@ -43,10 +47,17 @@ Una vez creado el <nombre_archivo>.asm se debe crear un **arhivo objeto** o arch
 
 4. Para abrir el arhivo ejecutable del programa se utiliza el comando: `./<nombre_ejecutable>`
 
-**En resumen: son 3 comandos**
+Si se quiere ejecutar el código FFT, archivo  `fft.asm`:
 
-`nasm -f elf64 -o <nombre_archivo>.o <nombre_archivo>.asm`
-`ld -o <nombre_ejecutable> <nombre_archivo>.o`
-`./<nombre_ejecutable>`
+**Archivo `fft.asm`**
+`$ nasm -f elf64 -o fft.o fft.asm`
+`$ ld -o fft fft.o`
+`$ ./fft`
+
+Por otro lado, el archivo `w_funcional.c` se encarga de calcular los W's requeridos para calcular la FFT en las etapas correspondientes. Si se quiere ejecutar el código en C, archivo  `w_funcional.c`:
+
+**Archivo `w_funcional.c`**
+`$ gcc w_funcional.c -o w_funcional -lm && ./w_funcional` o
+
 
 ********************************************************************
