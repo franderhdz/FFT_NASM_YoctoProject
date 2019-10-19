@@ -57,9 +57,9 @@ Si se quiere ejecutar el código FFT, archivo  `fft.asm`:
 El archivo `fft.asm` se encarga de calcular solamente el algoritmo FFT, recibiendo como entradas manuales los respectivos N datos en la carpeta **FFT** y los respectivos N/2 W's. Además, hace uso del archivo `mariposa.asm` que consiste en un macro que calcula las mariposas según las etapas del algoritmo.
 
 **Abrir archivo `fft.asm`** <br />
-`$ nasm -f elf64 -o fft.o fft.asm`
-`$ ld -o fft fft.o`
-`$ ./fft`
+`$ nasm -f elf64 -o fft.o fft.asm` <br />
+`$ ld -o fft fft.o` <br />
+`$ ./fft` <br />
 
 Por otro lado, el archivo `w_funcional.c` se encarga de calcular los W's requeridos para calcular la FFT en las etapas correspondientes. Si se quiere ejecutar el código en C, archivo  `w_funcional.c`:
 
