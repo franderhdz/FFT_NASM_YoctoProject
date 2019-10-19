@@ -34,13 +34,13 @@ REQUIREMENTS
 ********************************************************************
 HOW TO USE THE PROGRAM
 ============
-**Este código aún no es funcionable del todo**
+**Este código aún no es funcional, está en desarrollo**
 
 Pasos para crear un archivo **ejecutable** de emsamblador, con NASM. 
 
 Una vez creado el <nombre_archivo>.asm se debe crear un **arhivo objeto** o archivo de codigo maquina, es decir, el archivo que tiene las instrucciones que entiende y maneja el procesador directamente.
 
-1. Para ensamblar, crear el **archivo objeto** (extension .o), se usa el comando: 
+1. Para ensamblar, crear el **archivo objeto** (extension .o), se usa el comando: \\
 `nasm -f elf64 -o <nombre_archivo>.o <nombre_archivo>.asm`
 
 2. Comprobar que el archivo <nombre_archivo>.o se ha creado en el directorio con ls
@@ -52,14 +52,16 @@ Una vez creado el <nombre_archivo>.asm se debe crear un **arhivo objeto** o arch
 
 Si se quiere ejecutar el código FFT, archivo  `fft.asm`:
 
-**Archivo `fft.asm`**
+El archivo `fft.asm` se encarga de calcular solamente el algoritmo FFT, recibiendo como entradas manuales los respectivos N datos en la carpeta **FFT** y los respectivos N/2 W's.
+
+**Abrir archivo `fft.asm`** \\
 `$ nasm -f elf64 -o fft.o fft.asm`
 `$ ld -o fft fft.o`
 `$ ./fft`
 
 Por otro lado, el archivo `w_funcional.c` se encarga de calcular los W's requeridos para calcular la FFT en las etapas correspondientes. Si se quiere ejecutar el código en C, archivo  `w_funcional.c`:
 
-**Archivo `w_funcional.c`**
+**Abrir archivo `w_funcional.c`**
 `$ gcc w_funcional.c -o w_funcional -lm && ./w_funcional` o
 
 
