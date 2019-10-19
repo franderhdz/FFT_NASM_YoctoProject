@@ -66,5 +66,7 @@ Por otro lado, el archivo `w_funcional.c` se encarga de calcular los W's requeri
 **Abrir archivo `w_funcional.c`** <br />
 `$ gcc w_funcional.c -o w_funcional -lm && ./w_funcional` o
 
+**Carpeta Yocto_Recipes**
+Esta carpeta contiene los layers y recipes necesarios para cocinar un código en lenguaje ensamblador (.asm) utilizando NASM para una arquitectura de 32 bits.
 
 ********************************************************************
